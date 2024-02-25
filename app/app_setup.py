@@ -18,11 +18,11 @@ async def initialize_app(app: FastAPI):
         await Tortoise.close_connections()
 
 async def setup_database():
-    if not os.path.exists("../db"):
-        os.makedirs("../db", 777)
+    if not os.path.exists("/rest-app/db"):
+        os.makedirs("/rest-app/db", 777)
 
     await Tortoise.init(
-        db_url="sqlite://../db/db.sqlite3",
+        db_url="sqlite:///rest-app/db/db.sqlite3",
         modules={"models": ["models.user"]}
     )
 
