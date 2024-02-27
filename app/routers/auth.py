@@ -20,13 +20,13 @@ router = APIRouter(redirect_slashes=True)
 async def login_access_token(form_data : OAuth2PasswordRequestForm = Depends()):
     user_obj = await Users.get_or_none(username=form_data.username)
     user = authenticate(user_obj, form_data.password)
-    if not user:
-        logging.info("Incorrect username or password")
-        raise HTTPException(400, {"message": "Incorrect username or password"})
+    # if not user:
+    #     logging.info("Incorrect username or password")
+    #     raise HTTPException(400, {"message": "Incorrect username or password"})
 
     try :
-        user.last_visit = datetime.now()
-        await user.save(update_fields=["last_visit"])
+        #user.last_visit = datetime.now()
+        #await user.save(update_fields=["last_visit"])
 
         logging.fatal(f"hello from {settings.KUMA_SERVER}")
         api = UptimeKumaApi(settings.KUMA_SERVER)
